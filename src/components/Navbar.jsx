@@ -15,7 +15,9 @@ export default function Navbar() {
   const navClass = ({ isActive }) =>
     [
       "rounded-full px-3 py-2 text-sm font-semibold transition",
-      isActive ? "bg-brand-cocoa text-white" : "text-brand-ink hover:bg-brand-cream",
+      isActive
+        ? "bg-brand-cocoa text-white hover:bg-brand-cocoa"
+        : "text-brand-ink hover:bg-brand-cream",
     ].join(" ");
 
   return (

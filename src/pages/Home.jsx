@@ -4,6 +4,10 @@ import ServiceCard from "../components/ServiceCard";
 import { business } from "../data/business";
 import { services } from "../data/services";
 
+const heroImage = "/images/hero.jpg";
+const cateringImage = "/images/catering.jpg";
+const sweetsImage = "/images/sweets.jpg";
+
 export default function Home() {
   return (
     <>
@@ -31,15 +35,54 @@ export default function Home() {
               </Link>
             </div>
           </div>
-          <div className="rounded-[2rem] border border-white/15 bg-white/10 p-6 shadow-soft backdrop-blur">
-            <p className="font-display text-4xl">Fresh & Favored</p>
-            <p className="mt-2 text-brand-butter">and 5 Bro's Sweets & Treats</p>
-            <div className="mt-8 grid gap-4 text-sm text-white/80">
-              <p><b className="text-white">Food:</b> Soul food, seafood, plates, family meals, catering, private dinners.</p>
-              <p><b className="text-white">Sweets:</b> Cakes, treats, and homemade drinks.</p>
-              <p><b className="text-white">Retail:</b> Fedoras, perfume oils, and designer purses.</p>
+          <div className="overflow-hidden rounded-[2rem] border border-white/15 bg-white/10 shadow-soft backdrop-blur">
+            <img
+              src={heroImage}
+              alt="Fresh & Favored food and sweets presentation"
+              className="h-80 w-full object-cover sm:h-96"
+            />
+            <div className="p-6">
+              <p className="font-display text-4xl">Fresh & Favored</p>
+              <p className="mt-2 text-brand-butter">and 5 Bro's Sweets & Treats</p>
+              <div className="mt-6 grid gap-4 text-sm text-white/80">
+                <p><b className="text-white">Food:</b> Soul food, seafood, plates, family meals, catering, private dinners.</p>
+                <p><b className="text-white">Sweets:</b> Cakes, treats, and homemade drinks.</p>
+                <p><b className="text-white">Retail:</b> Fedoras, perfume oils, and designer purses.</p>
+              </div>
             </div>
           </div>
+        </div>
+      </section>
+      <section className="bg-white px-4 py-12 sm:px-6 lg:px-10">
+        <div className="mx-auto grid max-w-7xl gap-6 lg:grid-cols-2">
+          <article className="overflow-hidden rounded-3xl border border-brand-cocoa/10 bg-brand-cream shadow-soft">
+            <img
+              src={cateringImage}
+              alt="Fresh & Favored catering and savory food spread"
+              className="h-72 w-full object-cover"
+            />
+            <div className="p-6">
+              <p className="text-xs font-bold uppercase tracking-[0.2em] text-brand-sage">Catering</p>
+              <h2 className="mt-2 font-display text-4xl text-brand-cocoa">Soulful food for gatherings.</h2>
+              <p className="mt-3 text-sm leading-6 text-neutral-700">
+                Catering, private dinners, plates, and family meals prepared for celebrations, events, and meaningful moments.
+              </p>
+            </div>
+          </article>
+          <article className="overflow-hidden rounded-3xl border border-brand-cocoa/10 bg-brand-cream shadow-soft">
+            <img
+              src={sweetsImage}
+              alt="5 Bro's Sweets & Treats cakes and desserts"
+              className="h-72 w-full object-cover"
+            />
+            <div className="p-6">
+              <p className="text-xs font-bold uppercase tracking-[0.2em] text-brand-sage">Sweets & Drinks</p>
+              <h2 className="mt-2 font-display text-4xl text-brand-cocoa">Sweet details, homemade flavor.</h2>
+              <p className="mt-3 text-sm leading-6 text-neutral-700">
+                Cakes, treats, and homemade drinks are available for everyday orders, events, and custom requests.
+              </p>
+            </div>
+          </article>
         </div>
       </section>
       <section className="px-4 py-16 sm:px-6 lg:px-10">
