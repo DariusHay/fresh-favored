@@ -28,11 +28,20 @@ export default function Navbar() {
         </Link>
         <nav className="flex flex-wrap items-center gap-2">
           {links.map(([to, label]) => (
-            <NavLink key={to} to={to} className={navClass}>
+            <NavLink
+              key={to}
+              to={to}
+              className={navClass}
+              style={({ isActive }) => (isActive ? { color: "#ffffff" } : undefined)}
+            >
               {label}
             </NavLink>
           ))}
-          <NavLink to="/cart" className={navClass}>
+          <NavLink
+            to="/cart"
+            className={navClass}
+            style={({ isActive }) => (isActive ? { color: "#ffffff" } : undefined)}
+          >
             Cart ({itemCount})
           </NavLink>
         </nav>
