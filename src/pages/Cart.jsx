@@ -1,0 +1,83 @@
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import SEO from "../components/SEO";
+import { useCart } from "../context/useCart";
+import { formatPrice } from "../utils/formatPrice";
+
+const checkoutEndpoint =
+  import.meta.env.VITE_SQUARE_CHECKOUT_ENDPOINT ||
+  "/.netlify/functions/create-square-checkout";
+
+export default function Cart() {
+  const { items, subtotal, updateQuantity, removeItem, clearCart } = useCart();
+  const [error, setError] = useState("");
+  const [isCheckingOut, setIsCheckingOut] = useState(false);
+
+  async function startCheckout() {
+    setError("");
+    setIsCheckingOut(true);
+    try {
+      const response = await fetch(checkoutEndpoint, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          items: items.map(({ slug, quantity }) => ({ slug, quantity })),
+        }),
+      });
+      const payload = await response.json();
+      if (!response.ok) throw new Error(payload.error || "Checkout failed.");
+      window.location.href = payload.checkoutUrl;
+    } catch (checkoutError) {
+      setError(checkoutError.message);
+      setIsCheckingOut(false);
+    }
+  }
+
+  return (
+    <div className="px-4 py-16 sm:px-6 lg:px-10">
+      <SEO title="Cart | Fresh & Favored" description="Review Fresh & Favored booking deposits before secure checkout." />
+      <div className="mx-auto max-w-5xl">
+        <p className="text-xs font-bold uppercase tracking-[0.2em] text-brand-sage">Cart</p>
+        <h1 className="mt-2 font-display text-5xl text-brand-cocoa">Deposit Cart</h1>
+        {!items.length ? (
+          <div className="mt-8 rounded-3xl bg-white p-8 shadow-soft">
+            <p>Your cart is empty.</p>
+            <Link className="mt-5 inline-flex rounded-full bg-brand-cocoa px-6 py-3 font-bold text-white" to="/booking">View deposits</Link>
+          </div>
+        ) : (
+          <div className="mt-8 grid gap-6 lg:grid-cols-[1fr_320px]">
+            <div className="rounded-3xl bg-white shadow-soft">
+              {items.map((item) => (
+                <div key={item.slug} className="grid gap-4 border-b border-brand-cocoa/10 p-5 last:border-b-0 sm:grid-cols-[1fr_auto_auto] sm:items-center">
+                  <div>
+                    <p className="font-display text-2xl text-brand-cocoa">{item.name}</p>
+                    <p className="text-sm text-neutral-600">{formatPrice(item.price)} each</p>
+                  </div>
+                  <input
+                    aria-label={`${item.name} quantity`}
+                    className="w-24 rounded-xl border border-brand-cocoa/20 px-3 py-2"
+                    min="1"
+                    max="10"
+                    type="number"
+                    value={item.quantity}
+                    onChange={(event) => updateQuantity(item.slug, event.target.value)}
+                  />
+                  <button className="text-sm font-bold text-brand-cocoa underline" type="button" onClick={() => removeItem(item.slug)}>Remove</button>
+                </div>
+              ))}
+            </div>
+            <aside className="h-fit rounded-3xl bg-brand-ink p-6 text-white shadow-soft">
+              <p className="text-sm text-white/70">Subtotal</p>
+              <p className="mt-2 font-display text-4xl">{formatPrice(subtotal)}</p>
+              <button type="button" onClick={startCheckout} disabled={isCheckingOut} className="mt-6 w-full rounded-full bg-brand-butter px-6 py-3 font-bold text-brand-ink disabled:opacity-60">
+                {isCheckingOut ? "Starting checkout..." : "Checkout with Square"}
+              </button>
+              <button type="button" onClick={clearCart} className="mt-3 w-full rounded-full border border-white/30 px-6 py-3 font-bold text-white">Clear Cart</button>
+              {error ? <p className="mt-4 text-sm text-red-200">{error}</p> : null}
+            </aside>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}

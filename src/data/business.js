@@ -1,0 +1,28 @@
+export const business = {
+  name: "Fresh & Favored and 5 Bro's Sweets & Treats",
+  shortName: "Fresh & Favored",
+  tagline: "Where Fashion meets Flavor",
+  phone: "407-613-1150",
+  phoneHref: "tel:4076131150",
+  email: "freshandfavored@gmail.com",
+  emailHref: "mailto:freshandfavored@gmail.com",
+  address: "1020 W. Michigan St, Orlando, FL 32805",
+  pickupNote: "Pickup address only. Event services are available throughout Orlando and surrounding areas.",
+  serviceArea: "Orlando and surrounding areas",
+  cashApp: "$freshfavored01",
+  zelle: "407-722-2294",
+  social: {
+    facebook: "https://www.facebook.com/search/top?q=Fresh%20%26%20Favored",
+    instagram: "https://www.instagram.com/freshandfavoredllc",
+    tiktok: "https://www.tiktok.com/@fresh.favored.llc",
+  },
+  hours: [
+    { day: "Sunday", time: "Closed" },
+    { day: "Monday", time: "Closed" },
+    { day: "Tuesday", time: "10:00 AM - 6:00 PM" },
+    { day: "Wednesday", time: "9:00 AM - 7:00 PM" },
+    { day: "Thursday", time: "9:00 AM - 7:00 PM" },
+    { day: "Friday", time: "9:00 AM - 7:00 PM" },
+    { day: "Saturday", time: "9:00 AM - 7:00 PM" },
+  ],
+};
