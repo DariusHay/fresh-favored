@@ -1,10 +1,37 @@
+import { useState } from "react";
 import SEO from "../components/SEO";
 import { business } from "../data/business";
 
+const encodeForm = (data) =>
+  new URLSearchParams(data).toString();
+
 export default function Contact() {
-  const messageSent =
-    typeof window !== "undefined" &&
-    new URLSearchParams(window.location.search).get("success") === "true";
+  const [status, setStatus] = useState("idle");
+
+  async function handleSubmit(event) {
+    event.preventDefault();
+    setStatus("submitting");
+
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+
+    try {
+      const response = await fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: encodeForm(formData),
+      });
+
+      if (!response.ok) {
+        throw new Error("Unable to submit contact form.");
+      }
+
+      form.reset();
+      setStatus("success");
+    } catch {
+      setStatus("error");
+    }
+  }
 
   return (
     <div className="bg-white px-4 py-16 sm:px-6 lg:px-10">
@@ -24,7 +51,7 @@ export default function Contact() {
         <form
           name="contact"
           method="POST"
-          action={`${import.meta.env.BASE_URL}contact/?success=true`}
+          onSubmit={handleSubmit}
           data-netlify="true"
           netlify-honeypot="bot-field"
           className="rounded-3xl bg-brand-cream p-6 shadow-soft"
@@ -35,9 +62,14 @@ export default function Contact() {
               Do not fill this out if you are human: <input name="bot-field" />
             </label>
           </p>
-          {messageSent && (
+          {status === "success" && (
             <p className="rounded-2xl bg-white px-4 py-3 text-sm font-semibold text-brand-cocoa">
               Thanks! Your message was sent. Fresh & Favored will follow up soon.
+            </p>
+          )}
+          {status === "error" && (
+            <p className="rounded-2xl bg-red-50 px-4 py-3 text-sm font-semibold text-red-700">
+              Sorry, the message could not be sent. Please call or email Fresh & Favored directly.
             </p>
           )}
           <div className="grid gap-4">
@@ -59,7 +91,9 @@ export default function Contact() {
               Message
               <textarea name="message" rows="5" className="rounded-2xl border border-brand-cocoa/20 bg-white px-4 py-3 font-normal" />
             </label>
-            <button className="rounded-full bg-brand-cocoa px-6 py-3 font-bold text-white" type="submit">Send Message</button>
+            <button className="rounded-full bg-brand-cocoa px-6 py-3 font-bold text-white disabled:cursor-not-allowed disabled:opacity-70" type="submit" disabled={status === "submitting"}>
+              {status === "submitting" ? "Sending..." : "Send Message"}
+            </button>
           </div>
         </form>
       </div>
