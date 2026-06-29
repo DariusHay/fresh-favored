@@ -14,7 +14,20 @@
       content="Catering, private dinners, sweets, homemade drinks, fedoras, perfume oils, and designer purses in Orlando and surrounding areas."
     />
     <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://dariushay.github.io/fresh-favored/" />
+    <meta property="og:image" content="https://dariushay.github.io/fresh-favored/images/hero.jpg" />
+    <meta property="og:image:alt" content="Fresh & Favored food and sweets presentation" />
+    <meta property="og:site_name" content="Fresh & Favored" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Fresh & Favored | Where Fashion meets Flavor" />
+    <meta
+      name="twitter:description"
+      content="Catering, private dinners, sweets, homemade drinks, fedoras, perfume oils, and designer purses in Orlando and surrounding areas."
+    />
+    <meta name="twitter:image" content="https://dariushay.github.io/fresh-favored/images/hero.jpg" />
     <title>Fresh & Favored | Where Fashion meets Flavor</title>
+    <link rel="icon" type="image/jpeg" href="/images/hero.jpg" />
+    <link rel="apple-touch-icon" href="/images/hero.jpg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -35,6 +48,24 @@
         <option>Other</option>
       </select>
       <textarea name="message"></textarea>
+    </form>
+    <form name="consultation-request" data-netlify="true" netlify-honeypot="bot-field" hidden>
+      <input type="hidden" name="form-name" value="consultation-request" />
+      <input name="bot-field" />
+      <input name="service" />
+      <input name="starting-price" />
+      <input name="name" />
+      <input name="email" type="email" />
+      <input name="phone" />
+      <input name="requestedDate" type="date" />
+      <input name="quantity" />
+      <input name="budget" />
+      <select name="preferredContact">
+        <option>Phone call</option>
+        <option>Text message</option>
+        <option>Email</option>
+      </select>
+      <textarea name="details"></textarea>
     </form>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>

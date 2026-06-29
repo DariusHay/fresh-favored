@@ -1,4 +1,6 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import ConsultationFormModal from "../components/ConsultationFormModal";
 import SEO from "../components/SEO";
 import ServiceCard from "../components/ServiceCard";
 import { business } from "../data/business";
@@ -9,7 +11,20 @@ const heroImage = assetPath("images/hero.jpg");
 const cateringImage = assetPath("images/catering.jpg");
 const sweetsImage = assetPath("images/sweets.jpg");
 
+const featuredConsultations = {
+  catering: {
+    title: "Catering",
+    price: "$250 and up",
+  },
+  sweets: {
+    title: "Sweets & Drinks",
+    price: "$5 and up",
+  },
+};
+
 export default function Home() {
+  const [selectedConsultation, setSelectedConsultation] = useState(null);
+
   return (
     <>
       <SEO
@@ -72,6 +87,13 @@ export default function Home() {
               <p className="mt-3 text-sm leading-6 text-neutral-700">
                 Catering, private dinners, plates, and family meals prepared for celebrations, events, and meaningful moments.
               </p>
+              <button
+                type="button"
+                onClick={() => setSelectedConsultation(featuredConsultations.catering)}
+                className="mt-6 rounded-full bg-brand-cocoa px-6 py-3 text-sm font-bold text-white transition hover:bg-brand-ink"
+              >
+                Request Catering Consultation
+              </button>
             </div>
           </article>
           <article className="overflow-hidden rounded-3xl border border-brand-cocoa/10 bg-brand-cream shadow-soft">
@@ -88,6 +110,13 @@ export default function Home() {
               <p className="mt-3 text-sm leading-6 text-neutral-700">
                 Cakes, treats, and homemade drinks are available for everyday orders, events, and custom requests.
               </p>
+              <button
+                type="button"
+                onClick={() => setSelectedConsultation(featuredConsultations.sweets)}
+                className="mt-6 rounded-full bg-brand-cocoa px-6 py-3 text-sm font-bold text-white transition hover:bg-brand-ink"
+              >
+                Request Sweets Consultation
+              </button>
             </div>
           </article>
         </div>
@@ -103,6 +132,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+      {selectedConsultation ? (
+        <ConsultationFormModal service={selectedConsultation} onClose={() => setSelectedConsultation(null)} />
+      ) : null}
     </>
   );
 }

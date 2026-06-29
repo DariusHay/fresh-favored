@@ -1,4 +1,5 @@
 import SEO from "../components/SEO";
+import ServiceCard from "../components/ServiceCard";
 import { purchasableItems, services } from "../data/services";
 
 const consultationServices = services.filter(
@@ -41,22 +42,7 @@ export default function MenuRetail() {
           <h2 className="mt-2 font-display text-4xl text-brand-cocoa">Custom pricing after details are confirmed.</h2>
           <div className="mt-6 grid gap-4 md:grid-cols-2">
             {consultationServices.map((service) => (
-              <article key={service.title} className="overflow-hidden rounded-3xl border border-brand-cocoa/10 bg-brand-cream">
-                {service.image ? (
-                  <img
-                    src={service.image}
-                    alt={`${service.title} from Fresh & Favored`}
-                    className="h-72 w-full bg-white object-contain p-3"
-                  />
-                ) : null}
-                <div className="p-6">
-                  <div className="flex items-start justify-between gap-4">
-                    <h3 className="font-display text-3xl text-brand-cocoa">{service.title}</h3>
-                    <p className="rounded-full bg-white px-3 py-1 text-sm font-bold text-brand-cocoa">{service.price}</p>
-                  </div>
-                  <p className="mt-3 text-sm text-neutral-700">{service.summary}</p>
-                </div>
-              </article>
+              <ServiceCard key={service.title} service={service} />
             ))}
           </div>
         </section>

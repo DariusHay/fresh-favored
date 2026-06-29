@@ -1,28 +1,45 @@
+import { useState } from "react";
+import ConsultationFormModal from "./ConsultationFormModal";
+
 export default function ServiceCard({ service }) {
+  const [isConsultationOpen, setIsConsultationOpen] = useState(false);
+
   return (
-    <article className="overflow-hidden rounded-3xl border border-brand-cocoa/10 bg-white shadow-soft">
-      {service.image ? (
-        <img
-          src={service.image}
-          alt={`${service.title} from Fresh & Favored`}
-          className="h-72 w-full object-contain bg-brand-cream p-3"
-        />
-      ) : null}
-      <div className="p-6">
-        <div className="flex items-start justify-between gap-4">
-          <h3 className="font-display text-3xl text-brand-cocoa">{service.title}</h3>
-          <p className="whitespace-nowrap rounded-full bg-brand-cream px-3 py-1 text-xs font-bold text-brand-cocoa">{service.price}</p>
+    <>
+      <article className="overflow-hidden rounded-3xl border border-brand-cocoa/10 bg-white shadow-soft">
+        {service.image ? (
+          <img
+            src={service.image}
+            alt={`${service.title} from Fresh & Favored`}
+            className="h-72 w-full object-contain bg-brand-cream p-3"
+          />
+        ) : null}
+        <div className="p-6">
+          <div className="flex items-start justify-between gap-4">
+            <h3 className="font-display text-3xl text-brand-cocoa">{service.title}</h3>
+            <p className="whitespace-nowrap rounded-full bg-brand-cream px-3 py-1 text-xs font-bold text-brand-cocoa">{service.price}</p>
+          </div>
+          <p className="mt-4 text-sm leading-6 text-neutral-700">{service.summary}</p>
+          <ul className="mt-5 space-y-2 text-sm text-neutral-700">
+            {service.details.map((detail) => (
+              <li key={detail} className="flex gap-2">
+                <span className="mt-2 h-1.5 w-1.5 rounded-full bg-brand-caramel" />
+                <span>{detail}</span>
+              </li>
+            ))}
+          </ul>
+          <button
+            type="button"
+            onClick={() => setIsConsultationOpen(true)}
+            className="mt-6 w-full rounded-full bg-brand-cocoa px-6 py-3 text-sm font-bold text-white transition hover:bg-brand-ink"
+          >
+            Request Consultation
+          </button>
         </div>
-        <p className="mt-4 text-sm leading-6 text-neutral-700">{service.summary}</p>
-        <ul className="mt-5 space-y-2 text-sm text-neutral-700">
-          {service.details.map((detail) => (
-            <li key={detail} className="flex gap-2">
-              <span className="mt-2 h-1.5 w-1.5 rounded-full bg-brand-caramel" />
-              <span>{detail}</span>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </article>
+      </article>
+      {isConsultationOpen ? (
+        <ConsultationFormModal service={service} onClose={() => setIsConsultationOpen(false)} />
+      ) : null}
+    </>
   );
 }

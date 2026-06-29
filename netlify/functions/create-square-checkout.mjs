@@ -1,10 +1,10 @@
 import crypto from "node:crypto";
 
 const purchasableItems = [
-  { slug: "seafood-individual-plate", name: "Seafood Individual Plate", priceCents: 1500 },
-  { slug: "soul-food-individual-plate", name: "Soul Food Individual Plate", priceCents: 1500 },
-  { slug: "seafood-family-meal", name: "Seafood Family Meal", priceCents: 3000 },
-  { slug: "soul-food-family-meal", name: "Soul Food Family Meal", priceCents: 3000 },
+  { slug: "seafood-individual-plate", name: "Seafood Individual Plate", priceCents: 1 },
+  { slug: "soul-food-individual-plate", name: "Soul Food Individual Plate", priceCents: 1 },
+  { slug: "seafood-family-meal", name: "Seafood Family Meal", priceCents: 1 },
+  { slug: "soul-food-family-meal", name: "Soul Food Family Meal", priceCents: 1 },
 ];
 
 const corsHeaders = {
