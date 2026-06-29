@@ -2,6 +2,10 @@ import SEO from "../components/SEO";
 import { business } from "../data/business";
 
 export default function Contact() {
+  const messageSent =
+    typeof window !== "undefined" &&
+    new URLSearchParams(window.location.search).get("success") === "true";
+
   return (
     <div className="bg-white px-4 py-16 sm:px-6 lg:px-10">
       <SEO title="Contact | Fresh & Favored" description="Contact Fresh & Favored for catering, private dinners, cakes, retail, and pickup questions in Orlando." />
@@ -17,8 +21,25 @@ export default function Contact() {
             <p className="text-sm">{business.pickupNote}</p>
           </div>
         </div>
-        <form name="contact" method="POST" data-netlify="true" className="rounded-3xl bg-brand-cream p-6 shadow-soft">
+        <form
+          name="contact"
+          method="POST"
+          action={`${import.meta.env.BASE_URL}contact/?success=true`}
+          data-netlify="true"
+          netlify-honeypot="bot-field"
+          className="rounded-3xl bg-brand-cream p-6 shadow-soft"
+        >
           <input type="hidden" name="form-name" value="contact" />
+          <p className="hidden">
+            <label>
+              Do not fill this out if you are human: <input name="bot-field" />
+            </label>
+          </p>
+          {messageSent && (
+            <p className="rounded-2xl bg-white px-4 py-3 text-sm font-semibold text-brand-cocoa">
+              Thanks! Your message was sent. Fresh & Favored will follow up soon.
+            </p>
+          )}
           <div className="grid gap-4">
             <Field label="Name" name="name" />
             <Field label="Email" name="email" type="email" />

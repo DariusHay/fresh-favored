@@ -4,9 +4,10 @@ import ServiceCard from "../components/ServiceCard";
 import { business } from "../data/business";
 import { services } from "../data/services";
 
-const heroImage = "/images/hero.jpg";
-const cateringImage = "/images/catering.jpg";
-const sweetsImage = "/images/sweets.jpg";
+const assetPath = (path) => `${import.meta.env.BASE_URL}${path}`;
+const heroImage = assetPath("images/hero.jpg");
+const cateringImage = assetPath("images/catering.jpg");
+const sweetsImage = assetPath("images/sweets.jpg");
 
 export default function Home() {
   return (

@@ -1,3 +1,5 @@
+const assetPath = (path) => `${import.meta.env.BASE_URL}${path}`;
+
 export const services = [
   {
     title: "Catering",
@@ -40,7 +42,7 @@ export const services = [
     price: "$15 and up",
     summary: "Fashion-forward fedoras that bring the style side of Fresh & Favored to life.",
     details: ["Consultation-based final pricing", "Colors and styles may vary", "Pickup details confirmed after request"],
-    image: "/images/fedoras.webp",
+    image: assetPath("images/fedoras.webp"),
   },
 ];
 
