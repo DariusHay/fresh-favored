@@ -12,4 +12,4 @@ npm run dev
 ## Payments
 
 Square checkout is handled by `netlify/functions/create-square-checkout.mjs`.
-Set the environment variables from `.env.example` in Netlify before enabling live deposits.
+Set the environment variables from `.env.example` in Netlify before enabling live food checkout.

@@ -1,10 +1,10 @@
 import crypto from "node:crypto";
 
-const deposits = [
-  { slug: "catering-deposit", name: "Catering Deposit", priceCents: 5000 },
-  { slug: "private-dinner-deposit", name: "Private Dinner Deposit", priceCents: 5000 },
-  { slug: "custom-cake-deposit", name: "Custom Cake Deposit", priceCents: 2500 },
-  { slug: "retail-hold-deposit", name: "Retail Hold Deposit", priceCents: 1500 },
+const purchasableItems = [
+  { slug: "seafood-individual-plate", name: "Seafood Individual Plate", priceCents: 1500 },
+  { slug: "soul-food-individual-plate", name: "Soul Food Individual Plate", priceCents: 1500 },
+  { slug: "seafood-family-meal", name: "Seafood Family Meal", priceCents: 3000 },
+  { slug: "soul-food-family-meal", name: "Soul Food Family Meal", priceCents: 3000 },
 ];
 
 const corsHeaders = {
@@ -29,17 +29,17 @@ function requiredEnv(name) {
 
 function normalizeItems(items = []) {
   return items.map((item) => {
-    const deposit = deposits.find((entry) => entry.slug === item.slug);
-    if (!deposit) throw new Error(`Unknown deposit: ${item.slug}`);
+    const purchase = purchasableItems.find((entry) => entry.slug === item.slug);
+    if (!purchase) throw new Error(`Unknown checkout item: ${item.slug}`);
     const quantity = Math.max(1, Math.min(10, Number(item.quantity || 1)));
     return {
-      name: deposit.name,
+      name: purchase.name,
       quantity: String(quantity),
       base_price_money: {
-        amount: deposit.priceCents,
+        amount: purchase.priceCents,
         currency: "USD",
       },
-      note: deposit.slug,
+      note: `${purchase.slug} - pickup only during business hours`,
     };
   });
 }
@@ -54,6 +54,10 @@ export async function handler(event) {
   }
 
   try {
+    const parsed = JSON.parse(event.body || "{}");
+    const lineItems = normalizeItems(parsed.items);
+    if (!lineItems.length) return json(400, { error: "Cart is empty." });
+
     const accessToken = requiredEnv("SQUARE_ACCESS_TOKEN");
     const locationId = requiredEnv("SQUARE_LOCATION_ID");
     const environment = process.env.SQUARE_ENVIRONMENT || "production";
@@ -61,10 +65,6 @@ export async function handler(event) {
       environment === "sandbox"
         ? "https://connect.squareupsandbox.com"
         : "https://connect.squareup.com";
-
-    const parsed = JSON.parse(event.body || "{}");
-    const lineItems = normalizeItems(parsed.items);
-    if (!lineItems.length) return json(400, { error: "Cart is empty." });
 
     const siteUrl = process.env.SITE_URL || "http://localhost:8888";
     const redirectUrl =
@@ -108,6 +108,9 @@ export async function handler(event) {
       orderId: payload.payment_link?.order_id,
     });
   } catch (error) {
-    return json(500, { error: error.message || "Checkout failed." });
+    const statusCode = error.message?.startsWith("Unknown checkout item")
+      ? 400
+      : 500;
+    return json(statusCode, { error: error.message || "Checkout failed." });
   }
 }

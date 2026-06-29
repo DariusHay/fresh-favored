@@ -4,7 +4,7 @@ import { policies } from "../data/policies";
 export default function Policies() {
   return (
     <div className="bg-white px-4 py-16 sm:px-6 lg:px-10">
-      <SEO title="Policies | Fresh & Favored" description="Fresh & Favored booking, cancellation, deposit, and late payment policies." />
+      <SEO title="Policies | Fresh & Favored" description="Fresh & Favored booking, cancellation, pickup, and late payment policies." />
       <div className="mx-auto max-w-4xl">
         <p className="text-xs font-bold uppercase tracking-[0.2em] text-brand-sage">Policies</p>
         <h1 className="mt-2 font-display text-5xl text-brand-cocoa">Booking policies</h1>

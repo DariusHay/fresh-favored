@@ -28,7 +28,7 @@ export default function Home() {
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Link to="/booking" className="rounded-full bg-brand-butter px-7 py-3 text-center font-bold text-brand-ink transition hover:bg-white">
-                Book a Deposit
+                Order Food
               </Link>
               <Link to="/services" className="rounded-full border border-white/40 px-7 py-3 text-center font-bold text-white transition hover:bg-white/10">
                 Explore Services

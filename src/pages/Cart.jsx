@@ -35,14 +35,17 @@ export default function Cart() {
 
   return (
     <div className="px-4 py-16 sm:px-6 lg:px-10">
-      <SEO title="Cart | Fresh & Favored" description="Review Fresh & Favored booking deposits before secure checkout." />
+      <SEO title="Cart | Fresh & Favored" description="Review Fresh & Favored pickup food orders before secure checkout." />
       <div className="mx-auto max-w-5xl">
         <p className="text-xs font-bold uppercase tracking-[0.2em] text-brand-sage">Cart</p>
-        <h1 className="mt-2 font-display text-5xl text-brand-cocoa">Deposit Cart</h1>
+        <h1 className="mt-2 font-display text-5xl text-brand-cocoa">Food Order Cart</h1>
+        <p className="mt-4 max-w-3xl text-neutral-700">
+          Online checkout is for individual plates and family meals only. All purchases must be picked up at 1020 W. Michigan St, Orlando, FL 32805 during business hours.
+        </p>
         {!items.length ? (
           <div className="mt-8 rounded-3xl bg-white p-8 shadow-soft">
             <p>Your cart is empty.</p>
-            <Link className="mt-5 inline-flex rounded-full bg-brand-cocoa px-6 py-3 font-bold text-white" to="/booking">View deposits</Link>
+            <Link className="mt-5 inline-flex rounded-full bg-brand-cocoa px-6 py-3 font-bold text-white" to="/booking">View food orders</Link>
           </div>
         ) : (
           <div className="mt-8 grid gap-6 lg:grid-cols-[1fr_320px]">
@@ -69,6 +72,9 @@ export default function Cart() {
             <aside className="h-fit rounded-3xl bg-brand-ink p-6 text-white shadow-soft">
               <p className="text-sm text-white/70">Subtotal</p>
               <p className="mt-2 font-display text-4xl">{formatPrice(subtotal)}</p>
+              <p className="mt-4 rounded-2xl bg-white/10 p-3 text-xs leading-5 text-white/80">
+                Pickup only during business hours. This address is for food pickup only.
+              </p>
               <button type="button" onClick={startCheckout} disabled={isCheckingOut} className="mt-6 w-full rounded-full bg-brand-butter px-6 py-3 font-bold text-brand-ink disabled:opacity-60">
                 {isCheckingOut ? "Starting checkout..." : "Checkout with Square"}
               </button>

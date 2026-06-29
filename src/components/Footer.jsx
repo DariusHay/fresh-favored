@@ -22,7 +22,7 @@ export default function Footer() {
           <p className="text-xs font-bold uppercase tracking-[0.18em] text-brand-butter">Explore</p>
           <div className="mt-4 grid gap-2 text-sm text-white/80">
             <Link to="/services">Services</Link>
-            <Link to="/booking">Book a Deposit</Link>
+            <Link to="/booking">Order Food</Link>
             <Link to="/policies">Policies</Link>
             <Link to="/contact">Contact</Link>
           </div>

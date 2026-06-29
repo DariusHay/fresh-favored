@@ -6,7 +6,7 @@ const links = [
   ["/about", "About"],
   ["/services", "Services"],
   ["/menu-retail", "Menu & Retail"],
-  ["/booking", "Booking"],
+  ["/booking", "Order Food"],
   ["/contact", "Contact"],
 ];
 
