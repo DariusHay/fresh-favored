@@ -36,11 +36,13 @@ export default function Home() {
             </div>
           </div>
           <div className="overflow-hidden rounded-[2rem] border border-white/15 bg-white/10 shadow-soft backdrop-blur">
-            <img
-              src={heroImage}
-              alt="Fresh & Favored food and sweets presentation"
-              className="h-80 w-full object-cover object-top sm:h-96"
-            />
+            <div className="bg-brand-cream/10 p-3">
+              <img
+                src={heroImage}
+                alt="Fresh & Favored food and sweets presentation"
+                className="h-auto max-h-[30rem] w-full object-contain"
+              />
+            </div>
             <div className="p-6">
               <p className="font-display text-4xl">Fresh & Favored</p>
               <p className="mt-2 text-brand-butter">and 5 Bro's Sweets & Treats</p>
@@ -56,11 +58,13 @@ export default function Home() {
       <section className="bg-white px-4 py-12 sm:px-6 lg:px-10">
         <div className="mx-auto grid max-w-7xl gap-6 lg:grid-cols-2">
           <article className="overflow-hidden rounded-3xl border border-brand-cocoa/10 bg-brand-cream shadow-soft">
-            <img
-              src={cateringImage}
-              alt="Fresh & Favored catering and savory food spread"
-              className="h-80 w-full object-cover object-top sm:h-96"
-            />
+            <div className="bg-white p-3">
+              <img
+                src={cateringImage}
+                alt="Fresh & Favored catering and savory food spread"
+                className="h-auto max-h-[30rem] w-full object-contain"
+              />
+            </div>
             <div className="p-6">
               <p className="text-xs font-bold uppercase tracking-[0.2em] text-brand-sage">Catering</p>
               <h2 className="mt-2 font-display text-4xl text-brand-cocoa">Soulful food for gatherings.</h2>
@@ -70,11 +74,13 @@ export default function Home() {
             </div>
           </article>
           <article className="overflow-hidden rounded-3xl border border-brand-cocoa/10 bg-brand-cream shadow-soft">
-            <img
-              src={sweetsImage}
-              alt="5 Bro's Sweets & Treats cakes and desserts"
-              className="h-80 w-full object-cover object-top sm:h-96"
-            />
+            <div className="bg-white p-3">
+              <img
+                src={sweetsImage}
+                alt="5 Bro's Sweets & Treats cakes and desserts"
+                className="h-auto max-h-[30rem] w-full object-contain"
+              />
+            </div>
             <div className="p-6">
               <p className="text-xs font-bold uppercase tracking-[0.2em] text-brand-sage">Sweets & Drinks</p>
               <h2 className="mt-2 font-display text-4xl text-brand-cocoa">Sweet details, homemade flavor.</h2>
