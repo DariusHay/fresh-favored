@@ -27,6 +27,23 @@ function requiredEnv(name) {
   return value;
 }
 
+function validUrl(value) {
+  if (!value) return "";
+  try {
+    const url = new URL(value);
+    if (!["http:", "https:"].includes(url.protocol)) return "";
+    return url.toString();
+  } catch {
+    return "";
+  }
+}
+
+function getRequestOrigin(event) {
+  const protocol = event.headers["x-forwarded-proto"] || "https";
+  const host = event.headers.host;
+  return host ? `${protocol}://${host}` : "";
+}
+
 function normalizeItems(items = []) {
   return items.map((item) => {
     const purchase = purchasableItems.find((entry) => entry.slug === item.slug);
@@ -66,9 +83,15 @@ export async function handler(event) {
         ? "https://connect.squareupsandbox.com"
         : "https://connect.squareup.com";
 
-    const siteUrl = process.env.SITE_URL || "http://localhost:8888";
+    const siteUrl =
+      validUrl(parsed.siteUrl) ||
+      validUrl(process.env.SITE_URL) ||
+      getRequestOrigin(event) ||
+      "http://localhost:8888";
     const redirectUrl =
-      process.env.SQUARE_SUCCESS_URL || `${siteUrl}/booking/success`;
+      validUrl(parsed.successUrl) ||
+      validUrl(process.env.SQUARE_SUCCESS_URL) ||
+      `${siteUrl}/booking/success`;
 
     const response = await fetch(`${squareBaseUrl}/v2/online-checkout/payment-links`, {
       method: "POST",

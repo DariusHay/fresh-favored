@@ -23,6 +23,7 @@ export default function Cart() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           items: items.map(({ slug, quantity }) => ({ slug, quantity })),
+          successUrl: `${window.location.origin}/booking/success`,
         }),
       });
       const payload = await response.json();
