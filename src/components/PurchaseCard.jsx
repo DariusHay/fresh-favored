@@ -1,6 +1,8 @@
 import { useCart } from "../context/useCart";
 import { formatPrice } from "../utils/formatPrice";
 
+const pickupHours = "Sun-Mon: Closed. Tues: 10 AM-6 PM. Wed-Sat: 9 AM-7 PM.";
+
 export default function PurchaseCard({ item }) {
   const { addItem } = useCart();
 
@@ -11,7 +13,9 @@ export default function PurchaseCard({ item }) {
       <p className="mt-3 text-2xl font-bold text-brand-ink">{formatPrice(item.price)}</p>
       <p className="mt-4 flex-1 text-sm leading-6 text-neutral-700">{item.description}</p>
       <p className="mt-5 rounded-2xl bg-brand-cream px-4 py-3 text-xs font-semibold leading-5 text-brand-cocoa">
-        Pickup only at 1020 W. Michigan St, Orlando, FL 32805 during business hours.
+        Pickup only at 1020 W. Michigan St, Orlando, FL 32805.
+        <br />
+        Hours: {pickupHours}
       </p>
       <button
         type="button"
