@@ -39,7 +39,7 @@ export default function Home() {
             <img
               src={heroImage}
               alt="Fresh & Favored food and sweets presentation"
-              className="h-80 w-full object-cover sm:h-96"
+              className="h-80 w-full object-cover object-top sm:h-96"
             />
             <div className="p-6">
               <p className="font-display text-4xl">Fresh & Favored</p>
@@ -59,7 +59,7 @@ export default function Home() {
             <img
               src={cateringImage}
               alt="Fresh & Favored catering and savory food spread"
-              className="h-72 w-full object-cover"
+              className="h-80 w-full object-cover object-top sm:h-96"
             />
             <div className="p-6">
               <p className="text-xs font-bold uppercase tracking-[0.2em] text-brand-sage">Catering</p>
@@ -73,7 +73,7 @@ export default function Home() {
             <img
               src={sweetsImage}
               alt="5 Bro's Sweets & Treats cakes and desserts"
-              className="h-72 w-full object-cover"
+              className="h-80 w-full object-cover object-top sm:h-96"
             />
             <div className="p-6">
               <p className="text-xs font-bold uppercase tracking-[0.2em] text-brand-sage">Sweets & Drinks</p>
