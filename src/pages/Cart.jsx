@@ -8,6 +8,7 @@ const checkoutEndpoint =
   import.meta.env.VITE_SQUARE_CHECKOUT_ENDPOINT ||
   "/.netlify/functions/create-square-checkout";
 const pickupHours = "Sun-Mon: Closed. Tues: 10 AM-6 PM. Wed-Sat: 9 AM-7 PM.";
+const pendingOrderKey = "freshFavoredPendingOrder";
 
 export default function Cart() {
   const { items, subtotal, updateQuantity, removeItem, clearCart } = useCart();
@@ -28,6 +29,21 @@ export default function Cart() {
       });
       const payload = await response.json();
       if (!response.ok) throw new Error(payload.error || "Checkout failed.");
+      window.localStorage.setItem(
+        pendingOrderKey,
+        JSON.stringify({
+          orderId: payload.orderId || "Pending Square order",
+          items: items.map(({ name, price, quantity }) => ({
+            name,
+            price,
+            quantity,
+          })),
+          subtotal,
+          pickupAddress: "1020 W. Michigan St, Orlando, FL 32805 for pickup only",
+          pickupHours,
+          createdAt: new Date().toISOString(),
+        })
+      );
       window.location.href = payload.checkoutUrl;
     } catch (checkoutError) {
       setError(checkoutError.message);
@@ -43,7 +59,7 @@ export default function Cart() {
         <h1 className="mt-2 font-display text-5xl text-brand-cocoa">Food Order Cart</h1>
         <p className="mt-4 max-w-3xl text-neutral-700">
           Online checkout is for individual plates and family meals only. All
-          purchases must be picked up at 1020 W. Michigan St, Orlando, FL 32805.
+          purchases must be picked up at 1020 W. Michigan St, Orlando, FL 32805 for pickup only.
           Pickup hours: {pickupHours}
         </p>
         {!items.length ? (
@@ -77,8 +93,8 @@ export default function Cart() {
               <p className="text-sm text-white/70">Subtotal</p>
               <p className="mt-2 font-display text-4xl">{formatPrice(subtotal)}</p>
               <p className="mt-4 rounded-2xl bg-white/10 p-3 text-xs leading-5 text-white/80">
-                Pickup only at 1020 W. Michigan St, Orlando, FL 32805. Hours:
-                {" "}{pickupHours} This address is for food pickup only.
+                Pickup address: 1020 W. Michigan St, Orlando, FL 32805 for pickup only. Hours:
+                {" "}{pickupHours}
               </p>
               <button type="button" onClick={startCheckout} disabled={isCheckingOut} className="mt-6 w-full rounded-full bg-brand-butter px-6 py-3 font-bold text-brand-ink disabled:opacity-60">
                 {isCheckingOut ? "Starting checkout..." : "Checkout with Square"}

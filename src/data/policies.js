@@ -6,5 +6,5 @@ export const policies = {
   latePayment:
     "Final payment is due no later than 7 days before the event date unless otherwise agreed in writing. A late fee of $25 per day may be assessed for overdue balances. Services may be suspended or canceled if payment is not received by the agreed-upon deadline.",
   pickup:
-    "Online food purchases are pickup only at 1020 W. Michigan St, Orlando, FL 32805 during business hours. This address is for food pickup only.",
+    "Online food purchases are picked up at 1020 W. Michigan St, Orlando, FL 32805 for pickup only during business hours.",
 };

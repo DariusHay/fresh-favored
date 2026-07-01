@@ -14,7 +14,7 @@ export default function Booking() {
           Online checkout is available only for individual plates and family meals. All other services are consultation-based and priced after request details are confirmed.
         </p>
         <div className="mt-6 rounded-3xl border border-brand-cocoa/10 bg-white p-5 text-sm leading-7 text-brand-cocoa shadow-soft">
-          <b>Pickup notice:</b> Food purchases must be picked up at 1020 W. Michigan St, Orlando, FL 32805 during business hours. This address is for food pickup only.
+          <b>Pickup notice:</b> Food purchases must be picked up at 1020 W. Michigan St, Orlando, FL 32805 for pickup only during business hours.
         </div>
         <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
           {purchasableItems.map((item) => (
