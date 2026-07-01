@@ -18,6 +18,8 @@ function formatOrderDetails(order) {
 
   return [
     `Square order ID: ${order.orderId || "Not provided"}`,
+    `Customer name: ${order.customerName || "Not provided"}`,
+    `Customer email: ${order.customerEmail || "Not provided"}`,
     `Items:\n${items || "No item details found"}`,
     `Subtotal: ${formatPrice(order.subtotal || 0)}`,
     `Pickup address: ${order.pickupAddress}`,
@@ -48,6 +50,8 @@ export default function Success() {
             "form-name": "order-notification",
             "bot-field": "",
             "square-order-id": order.orderId || "Not provided",
+            "customer-name": order.customerName || "Not provided",
+            "customer-email": order.customerEmail || "Not provided",
             items:
               order.items
                 ?.map((item) => `${item.quantity} x ${item.name}`)

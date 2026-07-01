@@ -14,9 +14,22 @@ export default function Cart() {
   const { items, subtotal, updateQuantity, removeItem, clearCart } = useCart();
   const [error, setError] = useState("");
   const [isCheckingOut, setIsCheckingOut] = useState(false);
+  const [customerName, setCustomerName] = useState("");
+  const [customerEmail, setCustomerEmail] = useState("");
 
   async function startCheckout() {
     setError("");
+    const trimmedCustomerName = customerName.trim();
+    const trimmedCustomerEmail = customerEmail.trim();
+    if (!trimmedCustomerName) {
+      setError("Please enter the customer name before checkout.");
+      return;
+    }
+    if (!trimmedCustomerEmail) {
+      setError("Please enter the customer email before checkout.");
+      return;
+    }
+
     setIsCheckingOut(true);
     try {
       const response = await fetch(checkoutEndpoint, {
@@ -33,6 +46,8 @@ export default function Cart() {
         pendingOrderKey,
         JSON.stringify({
           orderId: payload.orderId || "Pending Square order",
+          customerName: trimmedCustomerName,
+          customerEmail: trimmedCustomerEmail,
           items: items.map(({ name, price, quantity }) => ({
             name,
             price,
@@ -96,6 +111,26 @@ export default function Cart() {
                 Pickup address: 1020 W. Michigan St, Orlando, FL 32805 for pickup only. Hours:
                 {" "}{pickupHours}
               </p>
+              <label className="mt-5 grid gap-2 text-sm font-semibold text-white">
+                Customer name
+                <input
+                  type="text"
+                  value={customerName}
+                  onChange={(event) => setCustomerName(event.target.value)}
+                  className="rounded-2xl border border-white/20 bg-white px-4 py-3 font-normal text-brand-ink"
+                  placeholder="Name for pickup order"
+                />
+              </label>
+              <label className="mt-4 grid gap-2 text-sm font-semibold text-white">
+                Customer email
+                <input
+                  type="email"
+                  value={customerEmail}
+                  onChange={(event) => setCustomerEmail(event.target.value)}
+                  className="rounded-2xl border border-white/20 bg-white px-4 py-3 font-normal text-brand-ink"
+                  placeholder="Email for order updates"
+                />
+              </label>
               <button type="button" onClick={startCheckout} disabled={isCheckingOut} className="mt-6 w-full rounded-full bg-brand-butter px-6 py-3 font-bold text-brand-ink disabled:opacity-60">
                 {isCheckingOut ? "Starting checkout..." : "Checkout with Square"}
               </button>
