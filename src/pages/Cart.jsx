@@ -16,17 +16,23 @@ export default function Cart() {
   const [isCheckingOut, setIsCheckingOut] = useState(false);
   const [customerName, setCustomerName] = useState("");
   const [customerEmail, setCustomerEmail] = useState("");
+  const [customerPhone, setCustomerPhone] = useState("");
 
   async function startCheckout() {
     setError("");
     const trimmedCustomerName = customerName.trim();
     const trimmedCustomerEmail = customerEmail.trim();
+    const trimmedCustomerPhone = customerPhone.trim();
     if (!trimmedCustomerName) {
       setError("Please enter the customer name before checkout.");
       return;
     }
     if (!trimmedCustomerEmail) {
       setError("Please enter the customer email before checkout.");
+      return;
+    }
+    if (!trimmedCustomerPhone) {
+      setError("Please enter the customer phone number before checkout.");
       return;
     }
 
@@ -48,6 +54,7 @@ export default function Cart() {
           orderId: payload.orderId || "Pending Square order",
           customerName: trimmedCustomerName,
           customerEmail: trimmedCustomerEmail,
+          customerPhone: trimmedCustomerPhone,
           items: items.map(({ name, price, quantity }) => ({
             name,
             price,
@@ -129,6 +136,16 @@ export default function Cart() {
                   onChange={(event) => setCustomerEmail(event.target.value)}
                   className="rounded-2xl border border-white/20 bg-white px-4 py-3 font-normal text-brand-ink"
                   placeholder="Email for order updates"
+                />
+              </label>
+              <label className="mt-4 grid gap-2 text-sm font-semibold text-white">
+                Customer phone number
+                <input
+                  type="tel"
+                  value={customerPhone}
+                  onChange={(event) => setCustomerPhone(event.target.value)}
+                  className="rounded-2xl border border-white/20 bg-white px-4 py-3 font-normal text-brand-ink"
+                  placeholder="Phone number for order updates"
                 />
               </label>
               <button type="button" onClick={startCheckout} disabled={isCheckingOut} className="mt-6 w-full rounded-full bg-brand-butter px-6 py-3 font-bold text-brand-ink disabled:opacity-60">
