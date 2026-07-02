@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import { business } from "../data/business";
 
+const logoPath = (filename) => `${import.meta.env.BASE_URL}images/${filename}`;
+
 export default function Footer() {
   return (
     <footer className="border-t border-brand-cocoa/10 bg-brand-ink text-white">
@@ -33,11 +35,13 @@ export default function Footer() {
             See updated menus, images, specials, and new retail finds.
           </p>
           <div className="mt-4 grid gap-2 text-sm text-white/80">
-            <a href={business.social.instagram} target="_blank" rel="noreferrer">
-              Instagram
+            <a className="inline-flex items-center gap-2 hover:text-white" href={business.social.instagram} target="_blank" rel="noreferrer">
+              <img src={logoPath("Instagram_logo.png")} alt="" className="h-5 w-5 rounded-md object-contain" />
+              <span>Instagram</span>
             </a>
-            <a href={business.social.facebook} target="_blank" rel="noreferrer">
-              Facebook
+            <a className="inline-flex items-center gap-2 hover:text-white" href={business.social.facebook} target="_blank" rel="noreferrer">
+              <img src={logoPath("Facebook_logo.png")} alt="" className="h-5 w-5 rounded-md object-contain" />
+              <span>Facebook</span>
             </a>
           </div>
         </div>

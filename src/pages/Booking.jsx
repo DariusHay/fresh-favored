@@ -1,5 +1,6 @@
 import SEO from "../components/SEO";
 import PurchaseCard from "../components/PurchaseCard";
+import SocialUpdateLine from "../components/SocialUpdateLine";
 import { purchasableItems } from "../data/services";
 import { policies } from "../data/policies";
 
@@ -16,6 +17,7 @@ export default function Booking() {
         <div className="mt-6 rounded-3xl border border-brand-cocoa/10 bg-white p-5 text-sm leading-7 text-brand-cocoa shadow-soft">
           <b>Pickup notice:</b> Food purchases must be picked up at 1020 W. Michigan St, Orlando, FL 32805 for pickup only during business hours.
         </div>
+        <SocialUpdateLine className="mt-5 rounded-3xl border border-brand-cocoa/10 bg-brand-cream p-5 text-brand-cocoa shadow-soft" />
         <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
           {purchasableItems.map((item) => (
             <PurchaseCard key={item.slug} item={item} />

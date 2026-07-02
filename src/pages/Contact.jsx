@@ -1,5 +1,6 @@
 import { useState } from "react";
 import SEO from "../components/SEO";
+import SocialLinkButton from "../components/SocialLinkButton";
 import { business } from "../data/business";
 
 const encodeForm = (data) =>
@@ -53,22 +54,18 @@ export default function Contact() {
               Fresh menus, food photos, specials, and retail arrivals are shared on social media.
             </p>
             <div className="mt-4 flex flex-col gap-3 sm:flex-row">
-              <a
+              <SocialLinkButton
                 href={business.social.instagram}
-                target="_blank"
-                rel="noreferrer"
-                className="rounded-full bg-brand-cocoa px-5 py-3 text-center text-sm font-bold text-white transition hover:bg-brand-ink"
-              >
-                Instagram
-              </a>
-              <a
+                label="Instagram"
+                logo="Instagram_logo.png"
+                variant="light"
+              />
+              <SocialLinkButton
                 href={business.social.facebook}
-                target="_blank"
-                rel="noreferrer"
-                className="rounded-full border border-brand-cocoa/25 px-5 py-3 text-center text-sm font-bold text-brand-cocoa transition hover:border-brand-cocoa hover:bg-white"
-              >
-                Facebook
-              </a>
+                label="Facebook"
+                logo="Facebook_logo.png"
+                variant="light"
+              />
             </div>
           </div>
         </div>

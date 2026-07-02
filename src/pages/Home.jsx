@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import ConsultationFormModal from "../components/ConsultationFormModal";
 import SEO from "../components/SEO";
 import ServiceCard from "../components/ServiceCard";
+import SocialLinkButton from "../components/SocialLinkButton";
+import SocialUpdateLine from "../components/SocialUpdateLine";
 import { business } from "../data/business";
 import { services } from "../data/services";
 
@@ -50,6 +52,7 @@ export default function Home() {
                 Explore Services
               </Link>
             </div>
+            <SocialUpdateLine className="mt-6 rounded-3xl border border-white/15 bg-white/10 p-4 text-white/85" />
           </div>
           <div className="overflow-hidden rounded-[2rem] border border-white/15 bg-white/10 shadow-soft backdrop-blur">
             <div className="bg-brand-cream/10 p-3">
@@ -131,22 +134,18 @@ export default function Home() {
             </p>
           </div>
           <div className="flex flex-col gap-3 sm:flex-row md:flex-col lg:flex-row">
-            <a
+            <SocialLinkButton
               href={business.social.instagram}
-              target="_blank"
-              rel="noreferrer"
-              className="rounded-full bg-brand-cocoa px-6 py-3 text-center text-sm font-bold text-white transition hover:bg-brand-ink"
-            >
-              Follow on Instagram
-            </a>
-            <a
+              label="Follow on Instagram"
+              logo="Instagram_logo.png"
+              variant="light"
+            />
+            <SocialLinkButton
               href={business.social.facebook}
-              target="_blank"
-              rel="noreferrer"
-              className="rounded-full border border-brand-cocoa/25 px-6 py-3 text-center text-sm font-bold text-brand-cocoa transition hover:border-brand-cocoa hover:bg-brand-cream"
-            >
-              Follow on Facebook
-            </a>
+              label="Follow on Facebook"
+              logo="Facebook_logo.png"
+              variant="light"
+            />
           </div>
         </div>
       </section>

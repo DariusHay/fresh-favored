@@ -1,4 +1,5 @@
 import SEO from "../components/SEO";
+import PurchaseCard from "../components/PurchaseCard";
 import ServiceCard from "../components/ServiceCard";
 import { purchasableItems, services } from "../data/services";
 
@@ -26,13 +27,7 @@ export default function MenuRetail() {
           </div>
           <div className="mt-6 grid gap-4 md:grid-cols-2">
             {purchasableItems.map((item) => (
-              <article key={item.slug} className="rounded-3xl border border-brand-cocoa/10 bg-brand-cream p-6">
-                <div className="flex items-start justify-between gap-4">
-                  <h3 className="font-display text-3xl text-brand-cocoa">{item.name}</h3>
-                  <p className="rounded-full bg-white px-3 py-1 text-sm font-bold text-brand-cocoa">${item.price}</p>
-                </div>
-                <p className="mt-3 text-sm text-neutral-700">{item.description}</p>
-              </article>
+              <PurchaseCard key={item.slug} item={item} />
             ))}
           </div>
         </section>
