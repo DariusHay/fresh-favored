@@ -4,7 +4,7 @@ import { business } from "../data/business";
 export default function Footer() {
   return (
     <footer className="border-t border-brand-cocoa/10 bg-brand-ink text-white">
-      <div className="mx-auto grid max-w-7xl gap-10 px-4 py-12 sm:px-6 md:grid-cols-3 lg:px-10">
+      <div className="mx-auto grid max-w-7xl gap-10 px-4 py-12 sm:px-6 md:grid-cols-4 lg:px-10">
         <div>
           <p className="font-display text-3xl">Fresh & Favored</p>
           <p className="mt-3 max-w-sm text-sm text-white/75">{business.tagline}</p>
@@ -25,6 +25,20 @@ export default function Footer() {
             <Link to="/booking">Order Food</Link>
             <Link to="/policies">Policies</Link>
             <Link to="/contact">Contact</Link>
+          </div>
+        </div>
+        <div>
+          <p className="text-xs font-bold uppercase tracking-[0.18em] text-brand-butter">Follow</p>
+          <p className="mt-4 text-sm leading-6 text-white/75">
+            See updated menus, images, specials, and new retail finds.
+          </p>
+          <div className="mt-4 grid gap-2 text-sm text-white/80">
+            <a href={business.social.instagram} target="_blank" rel="noreferrer">
+              Instagram
+            </a>
+            <a href={business.social.facebook} target="_blank" rel="noreferrer">
+              Facebook
+            </a>
           </div>
         </div>
       </div>

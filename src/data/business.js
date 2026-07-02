@@ -12,8 +12,8 @@ export const business = {
   cashApp: "$freshfavored01",
   zelle: "407-722-2294",
   social: {
-    facebook: "https://www.facebook.com/search/top?q=Fresh%20%26%20Favored",
-    instagram: "https://www.instagram.com/freshandfavoredllc",
+    facebook: "https://www.facebook.com/share/1HKBU2r3y4/?mibextid=wwXIfr",
+    instagram: "https://www.instagram.com/freshandfavoredllc/",
     tiktok: "https://www.tiktok.com/@fresh.favored.llc",
   },
   hours: [

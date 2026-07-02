@@ -47,6 +47,30 @@ export default function Contact() {
             <p><b>Pickup:</b> {business.address}</p>
             <p className="text-sm">{business.pickupNote}</p>
           </div>
+          <div className="mt-8 rounded-3xl border border-brand-cocoa/10 bg-brand-cream p-5">
+            <p className="text-sm font-bold text-brand-cocoa">Follow for updates</p>
+            <p className="mt-2 text-sm leading-6 text-neutral-700">
+              Fresh menus, food photos, specials, and retail arrivals are shared on social media.
+            </p>
+            <div className="mt-4 flex flex-col gap-3 sm:flex-row">
+              <a
+                href={business.social.instagram}
+                target="_blank"
+                rel="noreferrer"
+                className="rounded-full bg-brand-cocoa px-5 py-3 text-center text-sm font-bold text-white transition hover:bg-brand-ink"
+              >
+                Instagram
+              </a>
+              <a
+                href={business.social.facebook}
+                target="_blank"
+                rel="noreferrer"
+                className="rounded-full border border-brand-cocoa/25 px-5 py-3 text-center text-sm font-bold text-brand-cocoa transition hover:border-brand-cocoa hover:bg-white"
+              >
+                Facebook
+              </a>
+            </div>
+          </div>
         </div>
         <form
           name="contact"

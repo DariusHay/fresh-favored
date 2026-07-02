@@ -121,6 +121,35 @@ export default function Home() {
           </article>
         </div>
       </section>
+      <section className="bg-brand-cream px-4 py-14 sm:px-6 lg:px-10">
+        <div className="mx-auto grid max-w-7xl gap-6 rounded-[2rem] bg-white p-6 shadow-soft md:grid-cols-[1fr_auto] md:items-center md:p-8">
+          <div>
+            <p className="text-xs font-bold uppercase tracking-[0.2em] text-brand-sage">Stay Connected</p>
+            <h2 className="mt-2 font-display text-4xl text-brand-cocoa">Follow Fresh & Favored for the latest flavor and style.</h2>
+            <p className="mt-3 max-w-3xl text-sm leading-6 text-neutral-700">
+              Updated menus, food photos, retail arrivals, specials, and event highlights are shared on social media.
+            </p>
+          </div>
+          <div className="flex flex-col gap-3 sm:flex-row md:flex-col lg:flex-row">
+            <a
+              href={business.social.instagram}
+              target="_blank"
+              rel="noreferrer"
+              className="rounded-full bg-brand-cocoa px-6 py-3 text-center text-sm font-bold text-white transition hover:bg-brand-ink"
+            >
+              Follow on Instagram
+            </a>
+            <a
+              href={business.social.facebook}
+              target="_blank"
+              rel="noreferrer"
+              className="rounded-full border border-brand-cocoa/25 px-6 py-3 text-center text-sm font-bold text-brand-cocoa transition hover:border-brand-cocoa hover:bg-brand-cream"
+            >
+              Follow on Facebook
+            </a>
+          </div>
+        </div>
+      </section>
       <section className="px-4 py-16 sm:px-6 lg:px-10">
         <div className="mx-auto max-w-7xl">
           <p className="text-xs font-bold uppercase tracking-[0.2em] text-brand-sage">Popular Services</p>
